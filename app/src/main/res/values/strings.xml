@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">questionaire03</string>
+
+    <string name="basicIncome">Basic Income</string>
+    <string name="windPower">Wind Power</string>
+    <string name="climateWarming">Climate Warming</string>
+    <string name="desertification">Desertification</string>
+    <string name="food">Food</string>
+    <string name="humanrights">Human Rights</string>
+    <string name="Plastic">Plastic</string>
+    <string name="Trees">Trees</string>
+    <string name="water">Water</string>
+    <string name="recycling">Recycling</string>
+
+</resources>
