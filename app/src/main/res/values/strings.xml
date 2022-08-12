@@ -11,5 +11,6 @@
     <string name="Trees">Trees</string>
     <string name="water">Water</string>
     <string name="recycling">Recycling</string>
+    <string name="placeholder_search">Search</string>
 
 </resources>
