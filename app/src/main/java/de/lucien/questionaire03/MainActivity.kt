@@ -46,13 +46,15 @@ class MainActivity : ComponentActivity() {
                     color = Color.Gray//MaterialTheme.colors.col
                 ) {
                     //StartScreen()
-                    HomeScreen()
+                    //HomeScreen()
+                    QuestionaireApp()
                 }
             }
         }
     }
 }
 
+/*
 //@Preview(showBackground = true)
 @Composable // TODO  delete this .........
 fun StartScreen(modifier: Modifier = Modifier) {
@@ -68,6 +70,18 @@ fun StartScreen(modifier: Modifier = Modifier) {
         //MiddleMenu(drawable = R.drawable.p1plastic, text = R.string.windPower)
     }
 }
+*/
+// -----------------------
+@Composable
+fun QuestionaireApp(){
+Scaffold(
+    bottomBar = {QuestionaireBottomNavigation()}
+
+){ padding-> // TODO ??
+    HomeScreen()
+}
+}
+
 
 
 
