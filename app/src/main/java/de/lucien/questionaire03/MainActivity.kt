@@ -15,7 +15,9 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
@@ -52,7 +54,7 @@ class MainActivity : ComponentActivity() {
 }
 
 //@Preview(showBackground = true)
-@Composable
+@Composable // TODO  delete this .........
 fun StartScreen(modifier: Modifier = Modifier) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -76,10 +78,11 @@ fun HomeScreen(
 ){
     Column(
         modifier
-            .padding(vertical = 16.dp)
-            //.verticalScroll
+            //.padding(vertical = 16.dp) // spacer instead TEST BOTH TODO
+            .verticalScroll(rememberScrollState())
 
         ){
+        Spacer(Modifier.height(16.dp))
         SearchBar(Modifier.padding(horizontal = 16.dp))
         HomeSection(title = R.string.firstSection) {
             TopMenuLazyRow()
@@ -87,6 +90,7 @@ fun HomeScreen(
         HomeSection(title = R.string.secondSection){
             MiddleMenuLazyGridRow()
         }
+        Spacer(Modifier.height(16.dp))
 
     }
 
