@@ -12,5 +12,7 @@
     <string name="water">Water</string>
     <string name="recycling">Recycling</string>
     <string name="placeholder_search">Search</string>
+    <string name="firstSection">firrst Section</string>
+    <string name="secondSection">second Section</string>
 
 </resources>

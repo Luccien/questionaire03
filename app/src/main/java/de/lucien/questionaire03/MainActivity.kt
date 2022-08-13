@@ -11,7 +11,9 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
@@ -26,7 +28,9 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.graphics.drawable.toDrawable
 import de.lucien.questionaire03.ui.theme.Questionaire03Theme
+import java.util.*
 
 
 class MainActivity : ComponentActivity() {
@@ -39,15 +43,15 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = Color.Gray//MaterialTheme.colors.col
                 ) {
-                    StartScreen()
-
+                    //StartScreen()
+                    HomeScreen()
                 }
             }
         }
     }
 }
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
 fun StartScreen(modifier: Modifier = Modifier) {
     Column(
@@ -62,6 +66,57 @@ fun StartScreen(modifier: Modifier = Modifier) {
         //MiddleMenu(drawable = R.drawable.p1plastic, text = R.string.windPower)
     }
 }
+
+
+
+//--------------------------------------
+@Composable
+fun HomeScreen(
+    modifier: Modifier = Modifier,
+){
+    Column(
+        modifier
+            .padding(vertical = 16.dp)
+            //.verticalScroll
+
+        ){
+        SearchBar(Modifier.padding(horizontal = 16.dp))
+        HomeSection(title = R.string.firstSection) {
+            TopMenuLazyRow()
+        }
+        HomeSection(title = R.string.secondSection){
+            MiddleMenuLazyGridRow()
+        }
+
+    }
+
+}
+//--------------------------------------
+
+
+//-------------------------------------- TODO romove later
+@Composable
+fun HomeSection(
+    @StringRes title: Int,
+    modifier: Modifier = Modifier,
+    content: @Composable ()-> Unit
+){
+    Column(modifier){
+        Text( stringResource(id = title).uppercase(Locale.getDefault()),
+            style = MaterialTheme.typography.h2,
+            modifier = Modifier
+                .paddingFromBaseline(
+                    top = 40.dp,
+                    bottom = 8.dp
+                )
+                .padding(horizontal = 16.dp)
+        )
+        content()
+    }
+
+}
+//--------------------------------------
+
 
 // TODO cannot type in text...
 @Composable
@@ -80,8 +135,8 @@ fun SearchBar(
             backgroundColor = MaterialTheme.colors.surface
         ),
         modifier = modifier
-                .heightIn(min = 56.dp)
-                .fillMaxWidth()
+            .heightIn(min = 56.dp)
+            .fillMaxWidth()
     )
 }
 
@@ -162,28 +217,26 @@ fun TopMenuItem(@DrawableRes drawable: Int,
 }
 
 
-@Composable
-fun HomeSection(
-    @StringRes title: Int,
-    modifier: Modifier = Modifier,
-    content: @Composable ()-> Unit
-){
-    Column(modifier){
-        Text( stringResource(id = title))
-        content()
-    }
-
-}
-
-//compose 1.2
 
 @Composable
 fun MiddleMenuLazyGridRow(
     modifier: Modifier = Modifier
 ){
-    LazyHorizontalGrid()
-   // middleMenuData
-    //middleMenuData
+    LazyHorizontalGrid(
+        rows = GridCells.Fixed(2),
+        contentPadding = PaddingValues(horizontal = 16.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+        modifier = modifier.height(120.dp)
+    ){
+        items(middleMenuData){ item->
+            MiddleMenuItem(
+                drawable = item.drawable,
+                text = item.text
+            )
+        }
+    }
+
 }
 
 
@@ -192,10 +245,6 @@ fun MiddleMenuItem(
     @DrawableRes drawable: Int,
     @StringRes text: Int,
     modifier: Modifier = Modifier) {
-    /*Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        //modifier = modifier.fillMaxSize()
-    ) {*/
     Surface(
         shape = MaterialTheme.shapes.small,
         //modifier = Modifier.fillMaxSize() othervise all surface after that will be white
