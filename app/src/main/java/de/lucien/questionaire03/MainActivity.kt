@@ -97,6 +97,37 @@ fun HomeScreen(
 }
 //--------------------------------------
 
+@Composable
+fun QuestionaireBottomNavigation(
+    modifier: Modifier = Modifier,
+){
+    BottomNavigation(
+        backgroundColor = MaterialTheme.colors.background,
+        modifier = modifier
+    ){
+        BottomNavigationItem(
+            selected = true,
+            onClick = {},
+        icon = {Icon(Icons.Default.Spa, contentDescription = null)},
+            label = {
+                Text(stringResource(id = R.string.bottom_navigation_home))
+            }
+            )
+        //-----------
+        BottomNavigationItem(
+            selected = false,
+            onClick = {},
+            icon = {Icon(Icons.Default.Spa222, contentDescription = null)},
+            label = {
+                Text(stringResource(id = R.string.bottom_navigation_home222))
+            }
+        )
+
+        //----------
+    }
+}
+
+
 
 //-------------------------------------- TODO romove later
 @Composable
