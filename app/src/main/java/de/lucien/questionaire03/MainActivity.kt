@@ -1,5 +1,6 @@
 package de.lucien.questionaire03
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.ui.res.painterResource
 
@@ -11,16 +12,18 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
-import androidx.compose.foundation.lazy.grid.items
+//import androidx.compose.foundation.lazy.grid.GridCells
+//import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
+//import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -43,10 +46,8 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = Color.Gray//MaterialTheme.colors.col
+                    color = Color.Gray
                 ) {
-                    //StartScreen()
-                    //HomeScreen()
                     QuestionaireApp()
                 }
             }
@@ -74,12 +75,15 @@ fun StartScreen(modifier: Modifier = Modifier) {
 // -----------------------
 @Composable
 fun QuestionaireApp(){
-Scaffold(
+    HomeScreen()
+    /*Scaffold(
     bottomBar = {QuestionaireBottomNavigation()}
 
-){ padding-> // TODO ??
+//){ @SuppressLint("UnusedMaterialScaffoldPaddingParameter") padding ->
+){ padding ->
+
     HomeScreen()
-}
+}*/
 }
 
 
@@ -122,18 +126,18 @@ fun QuestionaireBottomNavigation(
         BottomNavigationItem(
             selected = true,
             onClick = {},
-        icon = {Icon(Icons.Default.Spa, contentDescription = null)},
+        icon = {Icon(Icons.Default.Star, contentDescription = null)},
             label = {
-                Text(stringResource(id = R.string.bottom_navigation_home))
+                Text(stringResource(id = R.string.bottom_navigation_star))
             }
             )
         //-----------
         BottomNavigationItem(
             selected = false,
             onClick = {},
-            icon = {Icon(Icons.Default.Spa222, contentDescription = null)},
+            icon = {Icon(Icons.Default.Person, contentDescription = null)},
             label = {
-                Text(stringResource(id = R.string.bottom_navigation_home222))
+                Text(stringResource(id = R.string.bottom_navigation_person))
             }
         )
 
@@ -271,6 +275,17 @@ fun TopMenuItem(@DrawableRes drawable: Int,
 fun MiddleMenuLazyGridRow(
     modifier: Modifier = Modifier
 ){
+
+    LazyRow(
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        contentPadding = PaddingValues(horizontal = 16.dp),
+        modifier = modifier)
+    {
+        items(topMenuData){item->
+            TopMenuItem(drawable = item.drawable, text = item.text)
+        }
+    }
+    /*
     LazyHorizontalGrid(
         rows = GridCells.Fixed(2),
         contentPadding = PaddingValues(horizontal = 16.dp),
@@ -284,7 +299,7 @@ fun MiddleMenuLazyGridRow(
                 text = item.text
             )
         }
-    }
+    }*/
 
 }
 

@@ -14,5 +14,7 @@
     <string name="placeholder_search">Search</string>
     <string name="firstSection">firrst Section</string>
     <string name="secondSection">second Section</string>
+    <string name="bottom_navigation_star">Star</string>
+    <string name="bottom_navigation_person">Person</string>
 
 </resources>
