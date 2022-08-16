@@ -75,15 +75,15 @@ fun StartScreen(modifier: Modifier = Modifier) {
 // -----------------------
 @Composable
 fun QuestionaireApp(){
-    HomeScreen()
-    /*Scaffold(
+    //HomeScreen()
+    Scaffold(
     bottomBar = {QuestionaireBottomNavigation()}
 
 //){ @SuppressLint("UnusedMaterialScaffoldPaddingParameter") padding ->
 ){ padding ->
 
     HomeScreen()
-}*/
+}
 }
 
 
