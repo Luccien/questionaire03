@@ -105,8 +105,9 @@ fun HomeScreen(
         HomeSection(title = R.string.firstSection) {
             TopMenuLazyRow()
         }
+        Spacer(Modifier.height(16.dp))
         HomeSection(title = R.string.secondSection){
-            MiddleMenuLazyGridRow()
+            MiddleMenuLazyRow()
         }
         Spacer(Modifier.height(16.dp))
 
@@ -147,7 +148,7 @@ fun QuestionaireBottomNavigation(
 
 
 
-//-------------------------------------- TODO romove later
+//-------------------------------------- TODO remove later
 @Composable
 fun HomeSection(
     @StringRes title: Int,
@@ -156,7 +157,7 @@ fun HomeSection(
 ){
     Column(modifier){
         Text( stringResource(id = title).uppercase(Locale.getDefault()),
-            style = MaterialTheme.typography.h2,
+            style = MaterialTheme.typography.h4,
             modifier = Modifier
                 .paddingFromBaseline(
                     top = 40.dp,
@@ -198,24 +199,24 @@ fun SearchBar(
 
 
 private val topMenuData = listOf(
-    R.drawable.p1plastic to R.string.Plastic,
+    //R.drawable.p1plastic to R.string.Plastic,
     R.drawable.p1food to R.string.food,
-    //R.drawable.basicincome to R.string.basicIncome,
-    R.drawable.p1climatewarming to R.string.climateWarming,
+    R.drawable.basicincome to R.string.basicIncome,
+    //R.drawable.p1climatewarming to R.string.climateWarming,
     R.drawable.p1humanrights to R.string.humanrights,
-    R.drawable.p1desertification to R.string.desertification,
-    R.drawable.p1recycling to R.string.recycling,
-    R.drawable.p1trees to R.string.Trees,
-    R.drawable.p1water to R.string.water,
+    ///R.drawable.p1desertification to R.string.desertification,
+    //R.drawable.p1recycling to R.string.recycling,
+    R.drawable.p1trees to R.string.Nature,
+    //R.drawable.p1water to R.string.water,
     R.drawable.p1windpower to R.string.windPower
 ).map{DrawableStringPair(it.first, it.second)}
 
 private val middleMenuData = listOf(
     R.drawable.p1plastic to R.string.Plastic,
-    R.drawable.p1food to R.string.food,
+    //R.drawable.p1food to R.string.food,
     //R.drawable.basicincome to R.string.basicIncome,
     R.drawable.p1climatewarming to R.string.climateWarming,
-    R.drawable.p1humanrights to R.string.humanrights,
+    //R.drawable.p1humanrights to R.string.humanrights,
     R.drawable.p1desertification to R.string.desertification,
     R.drawable.p1recycling to R.string.recycling,
     R.drawable.p1trees to R.string.Trees,
@@ -272,35 +273,18 @@ fun TopMenuItem(@DrawableRes drawable: Int,
 
 
 @Composable
-fun MiddleMenuLazyGridRow(
+fun MiddleMenuLazyRow(
     modifier: Modifier = Modifier
 ){
-
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         contentPadding = PaddingValues(horizontal = 16.dp),
         modifier = modifier)
     {
-        items(topMenuData){item->
-            TopMenuItem(drawable = item.drawable, text = item.text)
+        items(middleMenuData){item->
+            MiddleMenuItem(drawable = item.drawable, text = item.text)
         }
     }
-    /*
-    LazyHorizontalGrid(
-        rows = GridCells.Fixed(2),
-        contentPadding = PaddingValues(horizontal = 16.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp),
-        modifier = modifier.height(120.dp)
-    ){
-        items(middleMenuData){ item->
-            MiddleMenuItem(
-                drawable = item.drawable,
-                text = item.text
-            )
-        }
-    }*/
-
 }
 
 
